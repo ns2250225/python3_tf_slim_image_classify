@@ -28,6 +28,13 @@ python data_convert.py -t pic/ \
 
 # 将转换生成的5个文件复制到 slim\satellite\data 下
 
+# 修改 slim\datasets\satellite.py 文件
+- _FILE_PATTERN = 'satellite_%s_*.tfrecord'         （tf-record文件名格式）
+- SPLITS_TO_SIZES = {'train': 16, 'validation': 4}  （训练集和测试集文件总数）
+- _NUM_CLASSES = 2                                  （分类类目总数）
+- 'image/format': tf.FixedLenFeature((), tf.string, default_value='jpg')   （图片格式，这里是jpg）
+
+
 # 下载预训练模型Inception V3 
 - http://download.tensorflow.org/models/inception_v3_2016_08_28.tar.gz
 - 解压后，复制到 slim\satellite\pretrained 下
